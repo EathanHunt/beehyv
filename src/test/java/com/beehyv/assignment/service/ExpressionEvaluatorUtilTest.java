@@ -1,10 +1,10 @@
 package com.beehyv.assignment.service;
 
-import com.beehyv.assignment.exceptions.InvalidExpressionException;
 import com.beehyv.assignment.model.ExpressionValue;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ExpressionEvaluatorUtilTest {
     @Test

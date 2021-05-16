@@ -1,9 +1,17 @@
 package com.beehyv.assignment.controller;
 
+import com.beehyv.assignment.dto.ExpressionValueResponseDto;
+import com.beehyv.assignment.dto.MostUsedOperandDto;
 import com.beehyv.assignment.exceptions.InvalidExpressionException;
 import com.beehyv.assignment.model.Expression;
 import com.beehyv.assignment.service.ExpressionEvaluatorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +30,23 @@ public class ExpressionEvaluatorController {
     }
 
 
-    @PostMapping("/evaluate/{userId}")
-    @Operation(summary = "Returns the calculated value for the given expression",
-    ignoreJsonView = true)
+    @PostMapping(path = "/evaluate/{userId}", consumes = "application/json")
+    @Operation(summary = "Returns the calculated value for the given expression")
+    @Parameter(description = "ID of the user using this api", example = "sanket", name = "userId")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ExpressionValueResponseDto.class))),
+            @ApiResponse(responseCode = "400",
+                    content = @Content(schema = @Schema(implementation = String.class, name = "message"),
+                            examples = {@ExampleObject(value = "\"Given expression is invalid, unable evaluate\"")})
+            )})
     public ResponseEntity<?> calculateExpressionValue(@PathVariable(name = "userId") String userId,
                                                       @RequestBody Expression expression) {
         try {
             double value = service.evaluateExpression(userId, expression);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(Optional.of(value));
+                    .body(Optional.of(new ExpressionValueResponseDto(value)));
         } catch (InvalidExpressionException e) {
             Logger logger = Logger.getLogger(ExpressionEvaluatorController.class.getName());
             logger.log(Level.INFO, e, e::getMessage);
@@ -39,12 +55,15 @@ public class ExpressionEvaluatorController {
         }
     }
 
-    @GetMapping("/mostUsedOperand/{userId}")
+    @GetMapping(path = "/mostUsedOperand/{userId}")
     @Operation(summary = "Returns most used operand for the given user")
-    public ResponseEntity<?> getMostUsedOperand(@PathVariable(name = "userId") String userId) {
+    @Parameter(name = "userId", description = "ID of the user using this api", example = "sanket")
+    @ApiResponse(responseCode = "200",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = MostUsedOperandDto.class)))
+    public MostUsedOperandDto getMostUsedOperand(@PathVariable(name = "userId") String userId) {
         char value = service.getMostUserOperand(userId);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(Optional.of(value));
+        return new MostUsedOperandDto(value);
 
     }
 }

@@ -1,5 +1,7 @@
 package com.beehyv.assignment;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +19,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(
+        title = "BODMAS Evaluator",
+        description = "This application allows a user to provide an expression containing arithmetic operations '+', '-', '*' & '/'." +
+                " The expression can also contain brackets and the evaluated value will consider the operands precedence order as per BODMAS." +
+                " A user can also retrieve his most used operand in a particular run."
+
+))
 public class AssignmentApplication {
 
     @Value("${springdoc.swagger-ui.path}")
