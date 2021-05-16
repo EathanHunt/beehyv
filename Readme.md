@@ -1,5 +1,7 @@
 # BODMAS EVALUATOR
 
+This application allows a user to provide an expression containing arithmetic operations '+', '-', '*' & '/'. The expression can also contain brackets and the evaluated value will consider the operands precedence order as per BODMAS. A user can also retrieve his most used operand in a particular run. This readme file provides with all steps required to run the application.
+
 ### Prerequisite
 
 #### Java
