@@ -1,3 +1,4 @@
+
 # BODMAS EVALUATOR
 
 This application allows a user to provide an expression containing arithmetic operations '+', '-', '*' & '/'. The expression can also contain brackets and the evaluated value will consider the operands precedence order as per BODMAS. A user can also retrieve his most used operand in a particular run. This readme file provides with all steps required to run the application.
@@ -14,7 +15,7 @@ If you are going to run the application using the source code you need to instal
 ### Running the application
 
 #### Using binary
-You can download the zip file for the application from here [bodmas_evaluator.zip](https://github.com/EathanHunt/beehyv/files/6489030/bodmas_evaluator.zip), 
+You can download the zip file for the application from here [bodmas_evaluator.zip](https://github.com/EathanHunt/bodmas-evaluator/files/6489082/bodmas_evaluator.zip), 
 extract the contents of the zip file in a suitable folder. After extracting the content just run the _run.bat_ file.
 
 #### Using source
