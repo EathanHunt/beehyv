@@ -41,7 +41,7 @@ public class ExpressionEvaluatorController {
                             schema = @Schema(implementation = ExpressionValueResponseDto.class))),
             @ApiResponse(responseCode = "400",
                     content = @Content(schema = @Schema(implementation = String.class, name = "message"),
-                            examples = {@ExampleObject(value = "\"Given expression is invalid, unable evaluate\"")})
+                            examples = {@ExampleObject(value = "Given expression is invalid, unable evaluate")})
             )})
     public ResponseEntity<?> calculateExpressionValue(@PathVariable(name = "userId") String userId,
                                                       @RequestBody Expression expression) {
