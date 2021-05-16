@@ -15,7 +15,7 @@ If you are going to run the application using the source code you need to instal
 ### Running the application
 
 #### Using binary
-You can download the zip file for the application from here [bodmas_evaluator.zip](https://github.com/EathanHunt/bodmas-evaluator/files/6489082/bodmas_evaluator.zip), 
+You can download the zip file for the application from here [bodmas_evaluator.zip](https://github.com/EathanHunt/bodmas-evaluator/files/6489358/bodmas_evaluator.zip), 
 extract the contents of the zip file in a suitable folder. After extracting the content just run the _run.bat_ file.
 
 #### Using source
